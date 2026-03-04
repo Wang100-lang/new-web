@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿色物流 - 电商物流全链路实时碳核算数字化服务平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2ecc71;
+            --primary-dark: #27ae60;
+            --secondary-color: #3498db;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --gray-color: #7f8c8d;
+            --accent-color: #e74c3c;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(52, 152, 219, 0.1) 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .hero-text h2 {
+            font-size: 2.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            margin-bottom: 30px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 功能特色 */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(46, 204, 113, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        /* 仪表板 */
+        .dashboard {
+            padding: 100px 0;
+            background-color: #f5f9fc;
+        }
+        
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .dashboard-preview {
+            width: 100%;
+            max-width: 1000px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        
+        .dashboard-header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .stat-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: var(--gray-color);
+            font-size: 1rem;
+        }
+        
+        /* 流程展示 */
+        .process {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 0 15px;
+            position: relative;
+        }
+        
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -10%;
+            width: 20%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .process-step h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding-right: 20px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .footer-column p {
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            
+            .hero-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .process-step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-step {
+                margin-bottom: 40px;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <h1>绿色<span>物流</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#features">功能特色</a></li>
+                        <li><a href="#dashboard">碳核算仪表板</a></li>
+                        <li><a href="#process">流程</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </nav>
+                <a href="#contact" class="cta-button">免费试用</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>电商物流全链路实时碳核算数字化服务平台</h2>
+                    <p>基于大数据与AI技术，实现从仓储、分拣、配送到回收的全链路碳排放实时监测、核算与优化，助力企业实现碳中和目标，打造绿色可持续的电商物流生态系统。</p>
+                    <a href="#features" class="cta-button">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="绿色物流平台示意图">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能特色 -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>平台核心功能</h2>
+                <p>我们提供全面的碳核算数字化解决方案，覆盖电商物流全链路各个环节</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>实时碳核算</h3>
+                    <p>基于物流各环节实时数据，自动计算碳排放量，提供分钟级更新，确保数据准确性和时效性。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>全链路追踪</h3>
+                    <p>覆盖从仓储、分拣、运输、配送到回收的完整物流链路，实现碳排放全程可视化追踪。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>智能优化建议</h3>
+                    <p>基于AI算法分析碳排放数据，提供路径优化、运力调配、包装改进等减碳建议。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>碳报告生成</h3>
+                    <p>自动生成符合国际标准的碳核算报告，支持多格式导出，满足ESG披露需求。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>碳足迹认证</h3>
+                    <p>为每个包裹提供独立的碳足迹标签，助力企业打造绿色品牌形象。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>供应链协同</h3>
+                    <p>打通上下游供应链数据，实现跨企业碳排放协同管理，构建绿色供应链生态。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 碳核算仪表板 -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <div class="section-title">
+                <h2>实时碳核算仪表板</h2>
+                <p>可视化展示物流全链路碳排放数据，助力企业实时监控和决策</p>
+            </div>
+            
+            <div class="dashboard-container">
+                <div class="dashboard-preview">
+                    <div class="dashboard-header">
+                        <h3><i class="fas fa-tachometer-alt"></i> 实时碳核算监控面板</h3>
+                        <div class="time-info">2026年3月3日 15:30:45 更新</div>
+                    </div>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-value" id="total-carbon">1,248.6</div>
+                            <div class="stat-label">今日碳排放总量(kg CO₂e)</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-value" id="order-count">8,642</div>
+                            <div class="stat-label">今日已完成订单数</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-value" id="avg-carbon">0.144</div>
+                            <div class="stat-label">单均碳排放(kg CO₂e)</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-value" id="carbon-reduction">12.5%</div>
+                            <div class="stat-label">较上月减排比例</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 流程展示 -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>碳核算全链路流程</h2>
+                <p>从数据采集到报告生成的完整碳核算数字化流程</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>数据采集</h3>
+                    <p>通过物联网设备、API接口采集物流各环节能源、运输、包装等数据</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>碳排放计算</h3>
+                    <p>基于国际标准算法，实时计算各环节碳排放量，自动汇总分析</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>数据分析</h3>
+                    <p>识别高碳排放环节，分析减排潜力，生成可视化报告</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>优化建议</h3>
+                    <p>基于AI算法提供路径、包装、运力等优化建议，降低碳排放</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>报告与认证</h3>
+                    <p>生成符合标准的碳报告，提供碳足迹认证，支持ESG披露</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于绿色物流</h3>
+                    <p>我们致力于通过数字化技术推动电商物流行业的绿色转型，为企业提供全链路实时碳核算解决方案，助力实现"双碳"目标。</p>
+                    <p>平台已服务超过200家电商及物流企业，累计减少碳排放超过15万吨。</p>
+                </div>
+                
+                <div class="footer-column">
+    <h3>联系我们</h3>
+    <ul class="contact-info">
+        <li><i class="fas fa-map-marker-alt"></i> 安徽省阜阳市颍州区 阜临路169号阜阳理工(学院)西湖新城校区</li>
+        <li><i class="fas fa-phone"></i> 15212657719</li>
+        <li><i class="fas fa-envelope"></i> 1876693@qq.com</li>
+        <li><i class="fas fa-clock"></i> 周一至周五 9:00-18:00</li>
+    </ul>
+</div>                
+                <div class="footer-column">
+                    <h3>免费试用申请</h3>
+                    <p>立即申请免费试用，体验全链路实时碳核算平台</p>
+                    <a href="#contact" class="cta-button">申请试用</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 绿色物流数字化服务平台. 版权所有. 沪ICP备2026012345号</p>
+                <p>基于大数据与AI技术的电商物流碳核算解决方案</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 动态更新仪表板数据
+        function updateDashboardData() {
+            // 模拟实时数据变化
+            const totalCarbon = document.getElementById('total-carbon');
+            const orderCount = document.getElementById('order-count');
+            const avgCarbon = document.getElementById('avg-carbon');
+            const carbonReduction = document.getElementById('carbon-reduction');
+            
+            // 生成随机变化（实际应用中这里会从API获取数据）
+            const randomChange = (Math.random() - 0.5) * 0.1;
+            
+            // 更新碳排放总量（轻微随机变化）
+            let currentCarbon = parseFloat(totalCarbon.textContent.replace(',', ''));
+            currentCarbon = Math.max(800, currentCarbon * (1 + randomChange/10));
+            totalCarbon.textContent = currentCarbon.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            
+            // 更新订单数（持续增加）
+            let currentOrders = parseInt(orderCount.textContent.replace(',', ''));
+            currentOrders += Math.floor(Math.random() * 5) + 1;
+            orderCount.textContent = currentOrders.toLocaleString();
+            
+            // 更新平均碳排放
+            let currentAvg = parseFloat(avgCarbon.textContent);
+            currentAvg = Math.max(0.1, currentAvg * (1 + randomChange/20));
+            avgCarbon.textContent = currentAvg.toFixed(3);
+            
+            // 更新减排比例（轻微变化）
+            let currentReduction = parseFloat(carbonReduction.textContent);
+            currentReduction = Math.max(10, Math.min(15, currentReduction + randomChange));
+            carbonReduction.textContent = currentReduction.toFixed(1) + '%';
+        }
+        
+        // 每3秒更新一次数据
+        setInterval(updateDashboardData, 3000);
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
